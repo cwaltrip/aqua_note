@@ -7,18 +7,14 @@
             <th>Genus</th>
             <th># of species</th>
             <th>Last updated</th>
-            <th>Action</th>
         </tr>
         </thead>
         <tbody>
         {% for genus in genuses %}
             <tr>
-                <td>{{ genus.name }}</td>
+                <td><a href="{{ path('genus_show', {'genusName': genus.name}) }}">{{ genus.name }}</a></td>
                 <td>{{ genus.speciesCount }}</td>
                 <td>{{ genus.updatedAt | date('Y-m-d') }}</td>
-                <td>
-                    <a href="{{ path('genus_show', {'genusName': genus.name}) }}">View Details</a>
-                </td>
             </tr>
         {% endfor %}
         </tbody>
