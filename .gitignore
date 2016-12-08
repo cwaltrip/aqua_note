@@ -15,3 +15,6 @@
 /vendor/
 /web/bundles/
 .idea/workspace.xml
+.idea/services.yml
+.idea/dataSources
+.idea/dataSources/*

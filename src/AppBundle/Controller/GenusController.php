@@ -74,6 +74,7 @@ class GenusController extends Controller
 //            return $note->getCreatedAt() > new \DateTime('-3 months');
 //        });
 //        $funFact = "Octopuses can change the color of their body in just *three-tenths* of a second!";
+
 //        $cache = $this->get('doctrine_cache.providers.my_markdown_cache');
 //        $key = md5($funFact);
 //        if ($cache->contains($key)) {
@@ -84,11 +85,16 @@ class GenusController extends Controller
 //                ->transform($funFact);
 //            $cache->save($key, $funFact);
 //        }
+        $markdownParser = $this->get('app.markdown_transformer');
+
+        $funFact = $markdownParser->parse($genus->getFunFact());
+
         $recentNotes = $em->getRepository('AppBundle:GenusNote')
             ->findAllRecentNotesForGenus($genus);
 
         return $this->render('genus/show.html.twig', [
             'genus' => $genus,
+            'funFact' => $funFact,
             'recentNoteCount' => count($recentNotes)
         ]);
     }
